@@ -33,3 +33,10 @@ APIがそれほど速くないこともあり、一度生成し、使い回す�
 で指定したファイルをMarkdownに出力します（標準出力）。
 
 
+## dyna_watch.py
+
+ Dynalistのデータを監視し、変化がある毎に、指定されたMarkdownファイルを作成するツール。
+
+ `python3 dyna_watch.py 'ファイルID' target_file.md`
+
+ Dynalistの監視間隔は20sec（60secに6回のrate limitがある）。
