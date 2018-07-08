@@ -3,11 +3,11 @@ Dynalist data export to Markdown
 
 ## 利用前にAPI Tokenを生成ください
 [Dynalist Developer Page](https://dynalist.io/developer)でSecret tokenを生成してください。
-それと、.bashrcなどで
+生成したTokenを`.bashrc`などで
 
 `export Dynalist_API_KEY='生成したSecretToken here'`
 
-で環境変数に登録してください。
+として、環境変数にexportしてください。
 
 ---
 
