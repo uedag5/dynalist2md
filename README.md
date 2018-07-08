@@ -1,7 +1,7 @@
 # dynalist2md
 Dynalist data export to Markdown
 
-## 利用前にAPI TOkenを生成ください
+## 利用前にAPI Tokenを生成ください
 [Dynalist Developer Page](https://dynalist.io/developer)でSecret tokenを生成してください。
 それと、.bashrcなどで
 
