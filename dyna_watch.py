@@ -121,6 +121,8 @@ def text_list_to_markdown(file, text_list):
         else:
             file.write(export_text(text_list[n][1]) + '\n')
             file.write('\n')
+    file.write(export_text(text_list[n + 1][1]) + '\n')
+
 
 
 def text_format(text_list):

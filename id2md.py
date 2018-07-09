@@ -118,6 +118,7 @@ def text_list_to_markdown(text_list):
         else:
             print(export_text(text_list[n][1]))
             print()
+    print(export_text(text_list[n + 1][1]))
 
 
 def text_format(text_list):
