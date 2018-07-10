@@ -40,3 +40,10 @@ APIがそれほど速くないこともあり、一度生成し、使い回す�
  `python3 dyna_watch.py 'ファイルID' target_file.md`
 
  Dynalistの監視間隔は20sec（60secに6回のrate limitがある）。
+
+## dyna2deckset.py
+
+Dynalistのデータを監視し、変化がある毎に、指定されたMarkdownファイルをDecksetが受け入れるフォーマットで作成するツール。
+利用方法はdyna_watch.pyと同じ。
+
+Decksetが受け入れるフォーマットは`---`が改ページになっているので、H2を生成する前に必ず、その改ページを挿入する。
