@@ -94,9 +94,10 @@ def do_list_order(element_list, file_data):
 def export_text(text):
     if text.startswith('#'):
         return '\\' + text
+    elif text.startswith('!['):
+        return text + '\n' + '\n'
     elif text.startswith('---'):
         return '\n'
-        # return '\n' + text + '\n'
     elif text.startswith('- '):
         return text + '\n'
     elif text.startswith('1. '):
