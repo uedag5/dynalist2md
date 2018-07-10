@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #coding:utf-8
-# Dynalist to Markdown
+# Dynalist to Markdown for Deckset2
 
 import requests
 import json
@@ -97,6 +97,10 @@ def export_text(text):
     elif text.startswith('---'):
         return '\n'
         # return '\n' + text + '\n'
+    elif text.startswith('- '):
+        return text + '\n'
+    elif text.startswith('1. '):
+        return text + '\n'
     else:
         return text
 
@@ -124,46 +128,46 @@ def text_list_to_markdown(file, text_list):
                 file.write(export_text(text_list[n][1]))
                 file.write('\n')
             h2_done = True
+
         elif current_lv < next_lv:
             file.write('\n')
             file.write('#' * next_lv + ' '  + export_text(text_list[n][1]) + '\n')
             file.write('\n')
+
         elif current_lv == next_lv:
-            file.write(export_text(text_list[n][1]) + '\n')
+            file.write(export_text(text_list[n][1]))
+
         else:
-            file.write(export_text(text_list[n][1]) + '\n')
+            file.write(export_text(text_list[n][1]))
             file.write('\n')
     file.write(export_text(text_list[n + 1][1]) + '\n')
 
 
-
-def text_format(text_list):
-    for line in text_list:
-        print(line[0], line[1])
-
-
 def main(id, out_file):
-    SLEEP_TIME = 20
+    SLEEP_TIME = 15
 
-    prev_json = {}
-    while True:
-        file_data = get_body(id)
-        if file_data is None:
-            print("Can't find file")
-            sys.exit(1)
+    try:
+        prev_json = {}
+        while True:
+            file_data = get_body(id)
+            if file_data is None:
+                print("Can't find file")
+                sys.exit(1)
 
-        if prev_json != file_data:
-            #print("making .md file!")
-            #print(file_data)
-            prev_json = copy.deepcopy(file_data)
+            if prev_json != file_data:
+                #print("making .md file!")
+                #print(file_data)
+                prev_json = copy.deepcopy(file_data)
 
-            element_list = build_element_list(file_data['nodes'])
-            text_list = do_list_order(element_list, file_data)
+                element_list = build_element_list(file_data['nodes'])
+                text_list = do_list_order(element_list, file_data)
 
-            file = open(out_file, 'w')
-            text_list_to_markdown(file, text_list)
-            file.close()
-        time.sleep(SLEEP_TIME)
+                file = open(out_file, 'w')
+                text_list_to_markdown(file, text_list)
+                file.close()
+            time.sleep(SLEEP_TIME)
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
